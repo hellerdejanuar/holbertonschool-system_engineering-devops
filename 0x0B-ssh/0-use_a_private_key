@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# connect using key located in ~/.ssh/school
 ssh -i ~/.ssh/school ubuntu@3.80.136.213
