@@ -13,4 +13,4 @@ ip=$2
 user=$3
 key_path=$4
 
-scp -i $key_path $file_path $user@$ip:$dest_path
+scp -i $key_path -o StrictHostKeyChecking=no $file_path $user@$ip:$dest_path
