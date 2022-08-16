@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#runs ls in the path specified in the args, otherwise in ~/
+if [ $1 ] ; then
+path=$1
+ssh ubuntu@3.80.136.213 "ls $path"
+else 
+ssh ubuntu@3.80.136.213 'ls ~/'
+fi

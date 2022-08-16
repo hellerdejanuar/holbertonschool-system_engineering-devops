@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+"transfers a file from our client to a server"
+
+if [[ ! $4 ]] ; then
+echo Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY
+exit
+fi
+
+file_path=$1 
+dest_path="~/"
+ip=$2
+user=$3
+key_path=$4
+
+echo "scp -i $key_path$file_path $user@$ip:$dest_path"
+
