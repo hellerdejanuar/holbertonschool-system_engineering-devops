@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#adds a redirection in the nginx/sites-available/default file
+#first installs nginx and sets up nginx like 1-install_nginx_web_server
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx restart
+echo 'Hello World' | sudo tee /var/www/html/index.nginx-debian.html
+file=/etc/nginx/sites-available/default
+sed -i '/server_name.*;/a \trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n' file
