@@ -16,6 +16,6 @@ sudo sed -i '/server_name _;/a rewrite ^/redirect_me https://www.youtube.com/wat
 
 # Configure your Nginx server to have a custom 404 (Only run once, not idemp.)
 sudo mkdir -p  /var/www/html/
-sudo echo "Ceci n'est pas une page" > /var/www/html/error-page.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error-page.html
 sudo sed -i '/server_name _;/a error_page 404 \/error-page.html;' $file
 sudo service nginx restart
