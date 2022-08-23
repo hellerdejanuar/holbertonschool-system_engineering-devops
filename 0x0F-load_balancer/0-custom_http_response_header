@@ -23,5 +23,5 @@ sudo service nginx restart
 nginx_host=$(hostname)
 
 # add load balancer redirection
-sudo sed -i "/server_name _;/a X-Served-By "$nginx_host"" "$file"
+sudo sed -i "/server_name _;/a X-Served-By '$nginx_host'" "$file"
 
