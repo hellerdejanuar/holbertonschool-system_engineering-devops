@@ -27,4 +27,4 @@ for subdomain in "${list[@]}"
   '{ printf "The subdomain %s is a %s record and points to %s\n", var, $(NF -1), $(NF)}'
 done 
 }
-sub_dig $1 $2
+sub_dig "$1" "$2"
