@@ -18,9 +18,10 @@ sudo sed -i '/server_name _;/a rewrite ^/redirect_me https://www.youtube.com/wat
 sudo mkdir -p  /var/www/html/
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/error-page.html
 sudo sed -i '/server_name _;/a error_page 404 \/error-page.html;' $file
+sudo service nginx restart
 
 nginx_host=$(hostname)
 
 # add load balancer redirection
 sudo sed -i "/server_name _;/a X-Served-By '$nginx_host'" "$file"
-sudo service nginx restart
+
