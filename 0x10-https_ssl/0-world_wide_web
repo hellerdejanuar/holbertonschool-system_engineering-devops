@@ -3,28 +3,28 @@
 # and displays the subdomain name, its record type and IP address
 # if no subdomain specified it prints info for all subdomains in "list"
 
-# Guard: Not arg 1
 sub_dig () { 
-	if [[ ! $1 ]]
-then
-	exit
-fi
+  # Guard: Not arg 1
+  if [[ ! $1 ]]
+  then
+    exit
+  fi
 
-# If subdomain not specified, search trough all in "list"
-if [[ ! $2 ]]
-then
-  list=("www" "lb-01" "web-01" "web-02")
-else
-  list=("$2")
-fi
+  # If subdomain not specified, search trough all in "list"
+  if [[ ! $2 ]]
+  then
+    list=("www" "lb-01" "web-01" "web-02")
+  else
+    list=("$2")
+  fi
 
-for subdomain in "${list[@]}"
+  for subdomain in "${list[@]}"
   do
-  dig "$subdomain.$1" \
-  | grep -A1 'ANSWER SECTION:' \
-  | tail -1 \
-  | awk -v var="$subdomain" \
-  '{ printf "The subdomain %s is a %s record and points to %s\n", var, $(NF -1), $(NF)}'
-done 
+    dig "$subdomain.$1" \
+    | grep -A1 'ANSWER SECTION:' \
+    | tail -1 \
+    | awk -v var="$subdomain" \
+    '{ printf "The subdomain %s is a %s record and points to %s\n", var, $(NF -1), $(NF)}'
+  done
 }
 sub_dig "$1" "$2"
