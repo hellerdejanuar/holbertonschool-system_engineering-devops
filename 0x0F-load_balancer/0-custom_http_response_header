@@ -19,8 +19,9 @@ sudo mkdir -p  /var/www/html/
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/error-page.html
 sudo sed -i '/server_name _;/a error_page 404 \/error-page.html;' $file
 
-nginx_host=$(hostname)
-
 # add load balancer redirection
-sudo sed -i "/server_name _;/a X-Served-By '$nginx_host'" "$file"
+nginx_host=$(hostname)
+sudo sed -i "/server_name _;/a add_header X-Served-By '$nginx_host';" "$file"
+
+# restart
 sudo service nginx restart
