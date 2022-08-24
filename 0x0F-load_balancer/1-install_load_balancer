@@ -23,8 +23,8 @@ frontend http\
 \n\tdefault_backend site-backend
 backend site-backend\
 \n\tbalance roundrobin\
-\n\tserver 4441-web-01 3.80.136.213 check\
-\n\tserver 4441-web-02 54.205.179.111 check" | sudo tee -a "$file"
+\n\tserver 4441-web-01 3.80.136.213:80 check\
+\n\tserver 4441-web-02 54.205.179.111:80 check" | sudo tee -a "$file"
 
 # restart
 sudo service haproxy restart
