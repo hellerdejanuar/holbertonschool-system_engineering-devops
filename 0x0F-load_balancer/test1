@@ -11,9 +11,9 @@ file='asdf'
 # copy file to backup config
 sudo cp "$file" "$file".back
 
-# enable proxy
+# enable proxy init
 defaults='defaults'
-sudo sed -i "d/ENABLED=0/" "$defaults"
+sudo sed -i "/ENABLED=/d" "$defaults"
 echo -e "ENABLED=1" | sudo tee -a "$defaults"
 
 # add load balancer 
@@ -24,8 +24,8 @@ frontend http\
 \n\tdefault_backend site-backend
 backend site-backend\
 \n\tbalance roundrobin\
-\n\tserver 4441-web-01 3.80.136.213 check\
-\n\tserver 4441-web-02 54.205.179.111 check" | sudo tee -a "$file"
+\n\tserver 4441-web-01 3.80.136.213:80 check\
+\n\tserver 4441-web-02 54.205.179.111:80 check" | sudo tee -a "$file"
 
 # restart
 #sudo service haproxy restart
