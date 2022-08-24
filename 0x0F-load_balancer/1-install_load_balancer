@@ -12,10 +12,19 @@ file='/etc/haproxy/haproxy.cfg'
 sudo cp "$file" "$file".back
 
 # enable proxy
-sudo sed -i "s/ENABLED=0/ENABLED=1/" "/etc/default/haproxy"
+sudo sed -i "d/ENABLED=0/" "/etc/default/haproxy"
+echo -e "ENABLED=1" | sudo tee -a "/etc/default/haproxy"
 
 # add load balancer 
-echo -e "listen http-incoming\n\tmode http\n\tbalance roundrobin\n\tbind :80\n\toption forwardfor\n\tserver 4441-web-01 3.80.136.213 check\n\tserver 4441-web-02 54.205.179.111 check" | sudo tee -a "$file"
+echo -e "\
+frontend http\
+\n\tbind *:80\
+\n\tmode http\
+\n\tdefault_backend site-backend
+backend site-backend\
+\n\tbalance roundrobin\
+\n\tserver 4441-web-01 3.80.136.213 check\
+\n\tserver 4441-web-02 54.205.179.111 check" | sudo tee -a "$file"
 
 # restart
 sudo service haproxy restart
