@@ -12,9 +12,9 @@ file='/etc/haproxy/haproxy.cfg'
 sudo cp "$file" "$file".back
 
 # enable proxy init
-defaults='/etc/default/haproxy'
-sudo sed -i "/ENABLED=/d" "$defaults"
-echo -e "ENABLED=1" | sudo tee -a "$defaults"
+#defaults='/etc/default/haproxy'
+#sudo sed -i "/ENABLED=/d" "$defaults"
+#echo -e "ENABLED=1" | sudo tee -a "$defaults"
 
 # add load balancer 
 echo -e "\
