@@ -5,3 +5,4 @@ file='/etc/nginx/sites-enabled/default'
 
 sudo cp "$file" "$file".back
 sudo sed -i 's/8080/80/' "$file"
+sudo service nginx restart 
