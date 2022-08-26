@@ -2,4 +2,4 @@
 # configures nginx to listen on port 80
 file='/etc/nginx/sites-enabled/default'
 sudo sed -i 's/8080/80/' "$file"
-sudo service nginx restart 
+sudo service nginx stop
