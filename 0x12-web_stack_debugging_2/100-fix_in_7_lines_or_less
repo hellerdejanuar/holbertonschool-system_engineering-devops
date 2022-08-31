@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# # set up container to meet requirments of task #1
+file='/etc/nginx/nginx.conf'
+sudo cp "$file" "$file".back
+sudo chmod 644 "$file"
+sudo sed -ri 's/#?user www-data;/user nginx;/' "$file"
+sudo sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+su nginx -c 'service nginx start'
