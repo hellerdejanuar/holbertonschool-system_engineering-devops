@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# # set up container to meet requirments of task #1
+sudo apt-get update
+sudo apt-get install nginx
+file='/etc/nginx/nginx.conf'
+sudo sed -i 's/^#?user www-data;/user nginx;/' "$file"
+sudo sed -i 's/80/8080/g' "$file"
+su nginx -c 'service nginx start'
