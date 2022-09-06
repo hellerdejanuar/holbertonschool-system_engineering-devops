@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" 
+"""
     API requests module
-    this module fetches data from API 
+    this module fetches data from API
 """
 
 
@@ -14,10 +14,12 @@ if __name__ == "__main__":
     n_tasks_total = 0
     n_tasks_done = 0
 
-    user_tasks = requests.get('https://jsonplaceholder.typicode.com/users/{}/todos'
-                          .format(user_id)).json()
-    user_name = requests.get('https://jsonplaceholder.typicode.com/users/{}'
-                         .format(user_id)).json()['name']
+    user_tasks = requests.get(
+                'https://jsonplaceholder.typicode.com/users/{}/todos'
+                .format(user_id)).json()
+    user_name = requests.get(
+               'https://jsonplaceholder.typicode.com/users/{}'
+               .format(user_id)).json()['name']
 
     for task in user_tasks:
         n_tasks_total += 1
