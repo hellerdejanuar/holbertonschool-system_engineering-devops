@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """ API requests module """
 
-from sys import argv
 import requests
+from sys import argv
+
 
 if __name__ != "__main__":
     raise Exception("Imported")
 
-
-# print("argv: " + argv[1])
 user_id = argv[1]
 n_tasks_total = 0
 n_tasks_done = 0
