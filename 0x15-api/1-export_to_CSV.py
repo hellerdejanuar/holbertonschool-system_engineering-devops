@@ -4,7 +4,7 @@
     this module fetches data from API
 """
 
-
+import csv
 import requests
 from sys import argv
 
@@ -21,19 +21,12 @@ if __name__ == "__main__":
                'https://jsonplaceholder.typicode.com/users/{}'
                .format(user_id)).json()['name']
 
-    for task in user_tasks:
-        n_tasks_total += 1
-        if task['completed'] is True:
-            n_tasks_done += 1
-
-    print("Employee {} is done with tasks({}/{}):"
-          .format(user_name, n_tasks_done, n_tasks_total))
-
-    for task in user_tasks:
-        if task['completed'] is True:
-            print("\t {}".format(task['title']))
-
     # Write data in csv format
-    f = open('path/to/csv_file', 'w')
-    writer = csv.writer(f)
-
+    with open('USER_ID.csv', 'w', encoding='UTF-8') as f:
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+        for task in user_tasks:
+            row = [task.get('userId'),
+                   user_name,
+                   task.get('completed'),
+                   task.get('title')]
+            writer.writerow(row)
