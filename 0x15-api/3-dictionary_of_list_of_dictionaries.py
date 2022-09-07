@@ -31,9 +31,9 @@ if __name__ == "__main__":
                     username = user['username']
                     break
 
-            row = {'task':task.get('title'),
-                   'completed':task.get('completed'),
-                   'username':username}
+            row = {'task': task.get('title'),
+                   'completed': task.get('completed'),
+                   'username': username}
 
             if not str(user_id) in tasks_dict.keys():
                 tasks_dict[str(user_id)] = []
