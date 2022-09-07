@@ -22,7 +22,7 @@ if __name__ == "__main__":
                .format(user_id)).json()['name']
 
     # Write data in csv format
-    with open('USER_ID.csv', 'w', encoding='UTF-8') as f:
+    with open('{}.csv'.format(user_id), 'w', encoding='UTF-8') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         for task in user_tasks:
             row = [task.get('userId'),
