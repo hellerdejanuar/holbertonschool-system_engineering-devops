@@ -25,9 +25,9 @@ if __name__ == "__main__":
     # Write data in json format
     with open('{}.json'.format(user_id), 'w', encoding='utf-8') as f:
         for task in user_tasks:
-            row = {'task' : task.get('title'),
-                   'completed' : task.get('completed'),
-                   'username' : user_info.get('username')}
+            row = {'task':task.get('title'),
+                   'completed':task.get('completed'),
+                   'username':user_info.get('username')}
             task_list.append(row)
 
         usr_task_dict = {str(user_id) : task_list}
