@@ -13,7 +13,7 @@ def recurse(subreddit, hot_list=[], after=None):
                         allow_redirects=False)
 
     if resp.status_code != 200:
-        print('None')
+        print(None)
     else:
         data = resp.json().get('data').get('children')
         for elem in data:
