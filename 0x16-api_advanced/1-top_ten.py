@@ -10,14 +10,13 @@ def top_ten(subreddit):
     headers = {"User-Agent": "Mozilla/5.0"}
     resp = requests.get(url, headers=headers, allow_redirects=False)
 
-    if resp is None:
+    if resp.status_code != 200:
         print('None')
-        return
-
-    data = resp.json().get('data').get('children')
-    i = 0
-    for elem in data:
-        if i >= 10:
-            break
-        print(elem.get('data').get('title'))
-        i = i + 1
+    else:
+        data = resp.json().get('data').get('children')
+        i = 0
+        for elem in data:
+            if i >= 10:
+                break
+            print(elem.get('data').get('title'))
+            i = i + 1
