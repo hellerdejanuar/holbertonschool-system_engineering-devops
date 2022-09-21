@@ -3,7 +3,7 @@
 
 
 def top_ten(subreddit):
-    """ Returns number of suscribers of a subreddit """
+    """ Returns top 10 hot post titles of a subreddit """
     import requests
 
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
@@ -12,10 +12,12 @@ def top_ten(subreddit):
 
     if resp is None:
         print('None')
-    else:
-        data = resp.json().get('data').get('children')
-        for count, elem in enumerate(data):
-            if count >= 10:
-                break
-            print(elem.get('data').get('title'))
-            
+        return
+
+    data = resp.json().get('data').get('children')
+    i = 0
+    for elem in data:
+        if i >= 10:
+            break
+        print(elem.get('data').get('title'))
+        i = i + 1
