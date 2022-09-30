@@ -3,7 +3,7 @@
 # Change defaults file
 exec { 'fix-file':
   command => 'sed -i "s/ULIMIT.*/ULIMIT=\"-n 2048\"/" /etc/default/nginx',
-  command => "sed -i 's/worker_processes .*;/worker_processes 7;/g',
+  command => "sed -i 's/worker_processes .*;/worker_processes 7;/g /etc/nginx/nginx.conf',
   path    => '/usr/local/bin/:/bin/'
 }
 
